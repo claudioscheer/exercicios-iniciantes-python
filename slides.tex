@@ -1,0 +1,333 @@
+\PassOptionsToPackage{unicode}{hyperref}
+\documentclass[aspectratio=169]{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[portuguese]{babel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\usepackage{ulem}
+% Habilita Unicode em metadados (bookmarks etc.)
+\hypersetup{unicode=true}
+
+% Cor mais visível para texto monoespaçado inline (\texttt{...})
+\definecolor{ttcolor}{RGB}{0,51,153} % azul mais forte
+\DeclareTextFontCommand{\textttblue}{\ttfamily\color{ttcolor}}
+\DeclareTextFontCommand{\textttwhite}{\ttfamily\color{white}}
+\let\texttt\textttblue
+
+% Usar branco para \texttt em títulos de slides (frametitle e framesubtitle)
+\makeatletter
+\addtobeamertemplate{frametitle}{\begingroup\let\texttt\textttwhite}{\endgroup}
+\addtobeamertemplate{framesubtitle}{\begingroup\let\texttt\textttwhite}{\endgroup}
+\makeatother
+
+\lstdefinestyle{py}{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue!70!black},
+  commentstyle=\color{gray!70!black},
+  stringstyle=\color{teal!60!black},
+  showstringspaces=false,
+  frame=single,
+  rulecolor=\color{black!15},
+  numbers=left,
+  numberstyle=\tiny\color{gray!80!black},
+  numbersep=8pt,
+  tabsize=2,
+  columns=fullflexible,
+  keepspaces=true,
+  upquote=true,
+  breaklines=true,
+  breakatwhitespace=true,
+  xleftmargin=2em,
+  framexleftmargin=2em,
+  framexrightmargin=0em
+}
+\lstset{
+  style=py,
+  inputencoding=utf8,
+  literate=
+    {á}{{\'a}}1 {à}{{\`a}}1 {ã}{{\~a}}1 {â}{{\^a}}1
+    {é}{{\'e}}1 {ê}{{\^e}}1
+    {í}{{\'\i}}1
+    {ó}{{\'o}}1 {ô}{{\^o}}1 {õ}{{\~o}}1
+    {ú}{{\'u}}1 {ü}{{\"u}}1
+    {ç}{{\c c}}1
+    {Á}{{\'A}}1 {À}{{\`A}}1 {Ã}{{\~A}}1 {Â}{{\^A}}1
+    {É}{{\'E}}1 {Ê}{{\^E}}1
+    {Í}{{\'I}}1
+    {Ó}{{\'O}}1 {Ô}{{\^O}}1 {Õ}{{\~O}}1
+    {Ú}{{\'U}}1 {Ü}{{\"U}}1
+    {Ç}{{\c C}}1
+}
+
+\title{Introdução à Programação com Python}
+\subtitle{Sintaxe Básica}
+\author{Claudio Scheer}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Por que Python?}
+  \begin{itemize}
+    \item Simples e legível: código fácil de entender e escrever.
+    \item Sintaxe direta: menos símbolos, mais significado.
+    \item Muito usado: do iniciante ao profissional.
+    \item Comunidade grande e muitos exemplos.
+  \end{itemize}
+\end{frame}
+
+% Removido o slide de Sintaxe Básica. Exemplos serão mostrados nos tópicos.
+
+\begin{frame}[fragile]{Instruções e Variáveis}
+  \begin{block}{Ideia}
+    Uma instrução faz algo. Podemos guardar o resultado em uma variável.
+  \end{block}
+  \vspace{0.5em}
+  \begin{lstlisting}
+mensagem = "Olá"            # guarda um texto
+numero = 10                 # guarda um número
+nome = input("Seu nome: ")  # pede um texto
+  \end{lstlisting}
+  \vspace{0.5em}
+  \textbf{Padrão:} \texttt{nome\_variavel = valor} ou \texttt{nome\_variavel = instrução()}
+\end{frame}
+
+\begin{frame}[fragile]{Funções: Definição}
+  \begin{block}{O que é uma função?}
+    Um ``pacotinho'' de passos para fazer uma tarefa.
+  \end{block}
+  \vspace{0.3em}
+  \small Indentação (espaços no começo da linha) mostra o que faz parte da função.
+\begin{lstlisting}
+def faz_algo():
+    nome = input("Seu nome: ")  # dentro da função (indentado)
+    return nome                  # retorna o nome
+
+def soma(a, b):
+    resultado = a + b  # dentro da função
+    return resultado
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Funções: Exemplos do Python}
+  \begin{itemize}
+    \item \texttt{print}: mostra um valor na tela.
+    \item \texttt{input}: pede para digitar um valor.
+  \end{itemize}
+  \vspace{0.5em}
+  \begin{lstlisting}
+print("Oi!")                 # mostra um texto
+texto = input("Digite algo: ")  # lê um texto
+print("Você digitou:", texto)
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Tipos de Dados (exemplos simples)}
+\begin{lstlisting}
+idade = 5                 # número inteiro
+altura = 1.70             # número decimal
+nome = "Ana"              # texto (string)
+ligado = True             # booleano (True ou False)
+numeros = [1, 2, 3]       # lista
+pessoa = {"nome": "Ana", "idade": 5}  # dicionário
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Contas (Operadores Aritméticos)}
+  \begin{columns}[T,totalwidth=\textwidth]
+    \column{0.47\textwidth}
+    {\small
+    \begin{tabularx}{\columnwidth}{@{}l l X@{}}
+      \toprule
+      \textbf{Operador} & \textbf{Descrição} & \textbf{Exemplo} \\
+      \midrule
+      \texttt{+}  & Somar               & \texttt{x + y} \\
+      \texttt{-}  & Subtrair            & \texttt{x - y} \\
+      \texttt{*}  & Multiplicar         & \texttt{x * y} \\
+      \texttt{/}  & Dividir             & \texttt{x / y} \\
+      \texttt{\%} & Resto da divisão    & \texttt{x \% y} \\
+      \texttt{**} & Exponenciação       & \texttt{x ** y} \\
+      \bottomrule
+    \end{tabularx}}
+
+    \column{0.47\textwidth}
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,numbersep=6pt,xleftmargin=0pt,framexleftmargin=0pt,framexrightmargin=0pt,basicstyle=\ttfamily\footnotesize]
+a = 7
+b = 3
+soma = a + b        # 10
+subtracao = a - b   # 4
+produto = a * b     # 21
+divisao = a / b     # 2.333...
+resto = a % b       # 1
+potencia = a ** b   # 343
+\end{lstlisting}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Comparações (Operadores Lógicos)}
+  \begin{tabularx}{\textwidth}{@{}l l X@{}}
+    \toprule
+    \textbf{Operador} & \textbf{Descrição} & \textbf{Exemplo} \\
+    \midrule
+    \texttt{>}   & maior que         & \texttt{x > y} \\
+    \texttt{<}   & menor que         & \texttt{x < y} \\
+    \texttt{==}  & igual a           & \texttt{x == y} \\
+    \texttt{!=}  & diferente de      & \texttt{x != y} \\
+    \texttt{>=}  & maior ou igual    & \texttt{x >= y} \\
+    \texttt{<=}  & menor ou igual    & \texttt{x <= y} \\
+    \bottomrule
+  \end{tabularx}
+  \vspace{0.5em}
+\begin{lstlisting}
+x = 10
+y = 20
+eh_igual = (x == y)      # False
+eh_maior = (x > y)       # False
+eh_menor_ou_igual = (x <= y)  # True
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Controle de Fluxo: \texttt{if}/\texttt{else}}
+  \begin{block}{Ideia}
+    Escolhe o que fazer com base em uma condição.
+  \end{block}
+\begin{lstlisting}
+idade = 18
+if idade >= 18:
+    mensagem = "maior de idade"
+else:
+    mensagem = "menor de idade"
+print(mensagem)
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Somar dois números (passos)}
+  \begin{enumerate}
+    \item Pedir ao usuário um número entre 1 e 20.
+    \item Pedir ao usuário um segundo número entre 1 e 20.
+    \item Somar os dois números.
+    \item Mostrar o resultado.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Somar dois números (exemplo)}
+\begin{lstlisting}
+primeiro = int(input("Digite um número entre 1 e 20: "))
+segundo = int(input("Digite outro número entre 1 e 20: "))
+
+total = primeiro + segundo
+print("A soma é:", total)
+  \end{lstlisting}
+\vspace{0.3em}
+{\footnotesize Resposta: \href{https://github.com/claudioscheer/exercicios-iniciantes-python/blob/master/exercicios/soma-inteiros.py}{@exercicios/soma-inteiros.py}}
+\end{frame}
+
+\begin{frame}{Atividade (Placar do Jogo)}
+  \begin{block}{Desafio}
+    O placar foi \textbf{3 x 2} para o time A, contra o time B.
+  \end{block}
+  \begin{itemize}
+    \item O jogo empatou?
+    \item Quem ganhou?
+    \item Resposta: \href{https://github.com/claudioscheer/exercicios-iniciantes-python/blob/master/exercicios/verificar-empate.py}{@exercicios/verificar-empate.py}
+  \end{itemize}
+  \vspace{0.5em}
+  \textit{Dica:} compare os placares usando os operadores de comparação.
+\end{frame}
+
+\begin{frame}{Atividade: Operações Básicas}
+  \begin{itemize}
+    \item Descrição: ler dois números e mostrar soma, subtração, multiplicação e divisão.
+    \item Objetivo: praticar operadores aritméticos e exibir resultados.
+    \item Resposta: \href{https://github.com/claudioscheer/exercicios-iniciantes-python/blob/master/exercicios/operacoes-matematicas.py}{@exercicios/operacoes-matematicas.py}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Atividade: Calculadora de Idade}
+  \begin{itemize}
+    \item Descrição: pedir ano de nascimento e calcular idade aproximada.
+    \item Objetivo: ler entrada, converter e calcular.
+    \item Resposta: \href{https://github.com/claudioscheer/exercicios-iniciantes-python/blob/master/exercicios/calculadora-idade.py}{@exercicios/calculadora-idade.py}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Atividade: Bhaskara}
+  \begin{itemize}
+    \item Descrição: ler \texttt{a}, \texttt{b}, \texttt{c} e calcular as raízes da equação do 2º grau.
+    \item Objetivo: usar potência, raiz quadrada e condições para o delta.
+    \item Resposta: \href{https://github.com/claudioscheer/exercicios-iniciantes-python/blob/master/exercicios/bhaskara.py}{@exercicios/bhaskara.py}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Atividade: Tabuada}
+  \begin{itemize}
+    \item Descrição: mostrar a tabuada de um número.
+    \item Objetivo: praticar repetição e multiplicação.
+    \item Resposta: \href{https://github.com/claudioscheer/exercicios-iniciantes-python/blob/master/exercicios/tabuada.py}{@exercicios/tabuada.py}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Atividade: Validar Caracteres}
+  \begin{itemize}
+    \item Descrição: pedir um texto e dizer se tem pelo menos N caracteres.
+    \item Objetivo: trabalhar com strings e \texttt{len}.
+    \item Resposta: \href{https://github.com/claudioscheer/exercicios-iniciantes-python/blob/master/exercicios/validar-caracteres.py}{@exercicios/validar-caracteres.py}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Atividade: Somar Números Pares}
+  \begin{itemize}
+    \item Descrição: somar todos os números pares em um intervalo (ex.: 0 a 100).
+    \item Objetivo: praticar laços, condição de par e acumulação.
+    \item Resposta: \href{https://github.com/claudioscheer/exercicios-iniciantes-python/blob/master/exercicios/somar-pares.py}{@exercicios/somar-pares.py}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Atividade: Verificar Empate}
+  \begin{itemize}
+    \item Descrição: ler placar de A e B; dizer se empatou e quem ganhou.
+    \item Objetivo: comparar valores e imprimir mensagens.
+    \item Resposta: \href{https://github.com/claudioscheer/exercicios-iniciantes-python/blob/master/exercicios/verificar-empate.py}{@exercicios/verificar-empate.py}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Atividade: Soma de Dois Números}
+  \begin{itemize}
+    \item Descrição: pedir dois inteiros e mostrar a soma.
+    \item Objetivo: ler, converter e somar.
+    \item Resposta: \href{https://github.com/claudioscheer/exercicios-iniciantes-python/blob/master/exercicios/soma-inteiros.py}{@exercicios/soma-inteiros.py}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Dicas Finais}
+  \begin{itemize}
+    \item Pratique: escreva e execute pequenos programas.
+    \item Leia mensagens de erro com calma.
+    \item Indentação correta é essencial.
+    \item Comece simples e evolua aos poucos.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \centering
+  \Large Obrigado! \\
+  \vspace{0.5em}
+  \normalsize Perguntas?
+\end{frame}
+
+\end{document}
