@@ -1,42 +1,17 @@
-# Sobre
+Este repositório reúne material para educação muito básica de Python: slides introdutórios e exercícios simples para iniciantes.
 
-Este repositório armazena os algoritmos Python usados durante a escola de inverno do LARCC 2021.
-
-## Slides
+### Slides
 
 - PDF: [slides.pdf](slides.pdf)
 - Fonte (LaTeX): [slides.tex](slides.tex)
 
-# Algoritmos
+### Exercícios
 
-### Soma de dois números inteiros
-
-Clique [aqui](exercicios/soma-inteiros.py) para ver o algoritmo.
-
-### Verificar empate
-
-Clique [aqui](exercicios/verificar-empate.py) para ver o algoritmo.
-
-### Operações matemáticas básicas
-
-Clique [aqui](exercicios/operacoes-matematicas.py) para ver o algoritmo.
-
-### Calculadora de idade
-
-Clique [aqui](exercicios/calculadora-idade.py) para ver o algoritmo.
-
-### Calculadora Bhaskara
-
-Clique [aqui](exercicios/bhaskara.py) para ver o algoritmo.
-
-### Tabuada
-
-Clique [aqui](exercicios/tabuada.py) para ver o algoritmo.
-
-### Validar quantidade de caracteres
-
-Clique [aqui](exercicios/validar-caracteres.py) para ver o algoritmo.
-
-### Somar números pares
-
-Clique [aqui](exercicios/somar-pares.py) para ver o algoritmo.
+- [exercicios/bhaskara.py](exercicios/bhaskara.py)
+- [exercicios/calculadora-idade.py](exercicios/calculadora-idade.py)
+- [exercicios/operacoes-matematicas.py](exercicios/operacoes-matematicas.py)
+- [exercicios/soma-inteiros.py](exercicios/soma-inteiros.py)
+- [exercicios/somar-pares.py](exercicios/somar-pares.py)
+- [exercicios/tabuada.py](exercicios/tabuada.py)
+- [exercicios/validar-caracteres.py](exercicios/validar-caracteres.py)
+- [exercicios/verificar-empate.py](exercicios/verificar-empate.py)
